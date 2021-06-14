@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @CrumbleDEV
-- 👀 I’m interested in ... Javascrip C# Python
+- 👀 I’m interested in ... Js C# Python
 - 🌱 I’m currently learning ... IT-Systemadministration
 
 <!---
