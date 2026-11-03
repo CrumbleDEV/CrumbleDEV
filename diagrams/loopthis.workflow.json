@@ -1,0 +1,186 @@
+{
+ "schema_version": 1,
+ "diagram_type": "workflow",
+ "meta": {
+  "title": "/loopthis",
+  "subtitle": "next slice → gated TDD pipeline → draft PR, on repeat",
+  "output": "loopthis.html"
+ },
+ "lanes": [
+  {
+   "id": "backlog",
+   "label": "Backlog"
+  },
+  {
+   "id": "agent",
+   "label": "Builder agent"
+  },
+  {
+   "id": "human",
+   "label": "Human gates"
+  },
+  {
+   "id": "quality",
+   "label": "Quality"
+  },
+  {
+   "id": "ship",
+   "label": "Delivery"
+  }
+ ],
+ "phases": [
+  {
+   "id": "plan",
+   "label": "Plan",
+   "fromCol": 0,
+   "toCol": 2
+  },
+  {
+   "id": "build",
+   "label": "Build + verify",
+   "fromCol": 3,
+   "toCol": 5,
+   "variant": "emphasis"
+  }
+ ],
+ "groups": [],
+ "mainPath": [
+  "slice",
+  "plan",
+  "gate1",
+  "tdd",
+  "review",
+  "gate2",
+  "tests",
+  "pr"
+ ],
+ "nodes": [
+  {
+   "id": "slice",
+   "lane": "backlog",
+   "col": 0,
+   "type": "database",
+   "label": "Next slice",
+   "sublabel": "unblocked + undone"
+  },
+  {
+   "id": "plan",
+   "lane": "agent",
+   "col": 1,
+   "type": "backend",
+   "label": "Research",
+   "sublabel": "+ task plan"
+  },
+  {
+   "id": "tdd",
+   "lane": "agent",
+   "col": 3,
+   "type": "backend",
+   "label": "TDD build",
+   "sublabel": "red → green"
+  },
+  {
+   "id": "gate1",
+   "lane": "human",
+   "col": 2,
+   "type": "security",
+   "label": "Gate 1",
+   "sublabel": "approve plan"
+  },
+  {
+   "id": "gate2",
+   "lane": "human",
+   "col": 4,
+   "type": "security",
+   "label": "Gate 2",
+   "sublabel": "approve diff"
+  },
+  {
+   "id": "review",
+   "lane": "quality",
+   "col": 3,
+   "type": "messagebus",
+   "label": "Review",
+   "sublabel": "graph + agent"
+  },
+  {
+   "id": "tests",
+   "lane": "quality",
+   "col": 5,
+   "type": "messagebus",
+   "label": "Tests",
+   "sublabel": "fresh run"
+  },
+  {
+   "id": "pr",
+   "lane": "ship",
+   "col": 5,
+   "type": "cloud",
+   "label": "Draft PR",
+   "sublabel": "one per slice"
+  }
+ ],
+ "edges": [
+  {
+   "from": "slice",
+   "to": "plan",
+   "variant": "emphasis",
+   "fromSide": "right",
+   "toSide": "top"
+  },
+  {
+   "from": "plan",
+   "to": "gate1",
+   "variant": "security",
+   "fromSide": "right",
+   "toSide": "top"
+  },
+  {
+   "from": "gate1",
+   "to": "tdd",
+   "variant": "emphasis",
+   "fromSide": "top",
+   "toSide": "left"
+  },
+  {
+   "from": "tdd",
+   "to": "review",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "route": "straight"
+  },
+  {
+   "from": "review",
+   "to": "gate2",
+   "variant": "security",
+   "fromSide": "right",
+   "toSide": "bottom"
+  },
+  {
+   "from": "gate2",
+   "to": "tests",
+   "variant": "emphasis",
+   "fromSide": "right",
+   "toSide": "top"
+  },
+  {
+   "from": "tests",
+   "to": "pr",
+   "variant": "emphasis",
+   "fromSide": "bottom",
+   "toSide": "top",
+   "route": "straight"
+  },
+  {
+   "from": "pr",
+   "to": "slice",
+   "label": "repeat",
+   "variant": "dashed",
+   "role": "return",
+   "fromSide": "left",
+   "toSide": "bottom",
+   "route": "return-left"
+  }
+ ],
+ "cards": []
+}

@@ -20,6 +20,11 @@ tests and open draft PRs. A human approves at fixed gates; nothing auto-merges.
 | **Agent Virtual Office** | A pixel-art office that shows my AI coding agents working in real time. A Node daemon streams agent state into a Next.js dashboard. |
 | **Harness** | A registry-driven router over ~350 skills, ~80 sub-agents and 20+ MCP servers. It has hard guardrails (pre-tool hooks block destructive commands), cost caps and a code knowledge graph that runs before every review. |
 
+<p align="center">
+  <img src="assets/workme.svg" width="49%" alt="/workme architecture: goal, slicer and critic agents, one human gate, parallel builder worktrees, integration branch, draft PR" />
+  <img src="assets/loopthis.svg" width="49%" alt="/loopthis pipeline: next slice, research and plan, gate 1, TDD build, review, gate 2, tests, draft PR, repeat" />
+</p>
+
 **Principles:** gates over autonomy · one slice = one PR · tests must run green before a PR opens · agents never touch `main`.
 
 ---

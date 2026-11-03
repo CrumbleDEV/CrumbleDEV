@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": { "title": "/workme", "subtitle": "one goal → parallel agents → one draft PR", "output": "workme.html" },
+  "lanes": [
+    { "id": "human", "label": "Human" },
+    { "id": "plan", "label": "Planners" },
+    { "id": "build", "label": "Builders · parallel worktrees" },
+    { "id": "ship", "label": "Delivery" }
+  ],
+  "phases": [
+    { "id": "cut", "label": "Cut the goal", "fromCol": 0, "toCol": 3 },
+    { "id": "build", "label": "Approve · build · ship", "fromCol": 4, "toCol": 5, "variant": "emphasis" }
+  ],
+  "groups": [],
+  "mainPath": ["goal", "slicer", "critic", "approve", "wta", "integ", "pr", "review"],
+  "nodes": [
+    { "id": "goal", "lane": "human", "col": 0, "type": "external", "label": "Goal", "sublabel": "free-form text" },
+    { "id": "approve", "lane": "human", "col": 4, "type": "security", "label": "Approve cut", "sublabel": "the one gate" },
+    { "id": "review", "lane": "human", "col": 5, "type": "external", "label": "Review", "sublabel": "human merges" },
+    { "id": "slicer", "lane": "plan", "col": 1, "type": "backend", "label": "Slicer", "sublabel": "≤ 8 slices", "tag": "path ownership" },
+    { "id": "critic", "lane": "plan", "col": 3, "type": "backend", "label": "Critic", "sublabel": "conflict graph" },
+    { "id": "wta", "lane": "build", "col": 4, "type": "messagebus", "label": "Slice A", "sublabel": "TDD + review" },
+    { "id": "wtb", "lane": "build", "col": 5, "type": "messagebus", "label": "Slice B", "sublabel": "TDD + review" },
+    { "id": "integ", "lane": "ship", "col": 4, "type": "database", "label": "Integration", "sublabel": "one branch" },
+    { "id": "pr", "lane": "ship", "col": 5, "type": "cloud", "label": "Draft PR", "sublabel": "no auto-merge" }
+  ],
+  "edges": [
+    { "from": "goal", "to": "slicer", "variant": "emphasis", "fromSide": "right", "toSide": "top" },
+    { "from": "slicer", "to": "critic" },
+    { "from": "critic", "to": "approve", "variant": "security", "fromSide": "top", "toSide": "left" },
+    { "from": "approve", "to": "wta", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "straight" },
+    { "from": "approve", "to": "wtb", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "drop", "bias": 0.75 },
+    { "from": "wta", "to": "integ", "fromSide": "bottom", "toSide": "top", "route": "straight" },
+    { "from": "wtb", "to": "integ", "fromSide": "bottom", "toSide": "right", "route": "auto" },
+    { "from": "integ", "to": "pr", "variant": "emphasis" },
+    { "from": "pr", "to": "review", "variant": "emphasis", "role": "return", "fromSide": "right", "toSide": "right", "route": "outside-right" }
+  ],
+  "cards": []
+}
