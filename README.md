@@ -21,8 +21,10 @@ tests and open draft PRs. A human approves at fixed gates; nothing auto-merges.
 | **Harness** | A registry-driven router over ~350 skills, ~80 sub-agents and 20+ MCP servers. It has hard guardrails (pre-tool hooks block destructive commands), cost caps and a code knowledge graph that runs before every review. |
 
 <p align="center">
-  <img src="assets/workme.svg" width="49%" alt="/workme architecture: goal, slicer and critic agents, one human gate, parallel builder worktrees, integration branch, draft PR" />
-  <img src="assets/loopthis.svg" width="49%" alt="/loopthis pipeline: next slice, research and plan, gate 1, TDD build, review, gate 2, tests, draft PR, repeat" />
+  <img src="assets/workme.svg" width="100%" alt="/workme architecture: goal, slicer and critic agents, one human gate, parallel builder worktrees, integration branch, draft PR" />
+</p>
+<p align="center">
+  <img src="assets/loopthis.svg" width="100%" alt="/loopthis pipeline: next slice, research and plan, gate 1, TDD build, review, gate 2, tests, draft PR, repeat" />
 </p>
 
 **Principles:** gates over autonomy · one slice = one PR · tests must run green before a PR opens · agents never touch `main`.
