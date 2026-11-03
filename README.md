@@ -33,12 +33,8 @@ It includes a streaming Claude chat playground, a visual workflow editor (React 
 **RaveBase (iOS)**: a social app for rave crews in Swift and SwiftUI with a Supabase backend.
 Event hub, festival finder, crew chat, live photo drops, a drink-cost splitter and meeting points.
 
-**Auftik**: multi-tenant SaaS that uses AI to automate orders and documents for trade businesses in Germany, Austria and Switzerland.
-
-**[After](https://afterket.vercel.app)**: guest lists for afterparties with QR passes, atomic seat claims in Postgres and host check-in.
-
 **Client sites** (shipped and live): [WZ-Atelier](https://wz-atelier-site.vercel.app) (tattoo studio with booking CRM and Three.js),
-Pippig's Brillen, PSA-System, Heartbeats Agency, Speicher Fahrzeugbau and more.
+PSA-System, Heartbeats Agency and more.
 
 ---
 
