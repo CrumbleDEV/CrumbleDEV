@@ -4,8 +4,7 @@ I build **LLM agent systems that ship real software**, and the products they shi
 My agents plan work, write code in isolated git worktrees, review each other, run the
 tests and open draft PRs. A human approves at fixed gates; nothing auto-merges.
 
-546 merged PRs on my main product repo, 123 on my iOS app, 10+ client
-websites in production. Most of it was built with the agent tooling below.
+546 merged PRs on my main product repo and 123 on my iOS app. Most of it was built with the agent tooling below.
 
 🌐 [gohexa.ai](https://gohexa.ai) · 📁 [Projects](https://gohexa.ai/projects) · 🇩🇪 🇬🇧
 
